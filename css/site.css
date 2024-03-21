@@ -1,0 +1,59 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    cursor: url('../assets/images/cursor2.png'), auto;
+}
+
+#gameMenu {
+    position: fixed; /* Use fixed if the canvas position is fixed or known */
+    bottom: 0; /* Start from the bottom */
+    right: 100; /* Start from the right */
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    z-index: 10; /* Ensure it's above the game canvas */
+    cursor: url('../assets/images/cursor2.png'), auto;
+
+}
+
+#feedMenu {
+    position: fixed; /* Fixed position */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for true centering */
+    height: 80vh; /* 80% of the viewport height */
+    width: 80vh; /* 80% of the viewport width */
+    display: none;
+    flex-direction: column;
+    align-items: left; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    gap: 2vh;
+    z-index: 11; /* Ensure it's above the game canvas and gameMenu */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent blue background, similar to gameButton */
+    border: 2px solid white; /* White border */
+    border-radius: 2vh;
+    padding: 10px;
+    color: white;
+    cursor: url('../assets/images/cursor2.png'), auto;
+
+}
+
+  
+  .gameButton {
+    background-color: rgba(0, 0, 255, 0.5); /* Semi-transparent blue background */
+    color: white; /* White font */
+    border: 2px solid white; /* White border */
+    border-radius: 2vh;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1em; /* Adjust size as needed */
+    width: 26vh;
+    cursor: url('../assets/images/cursor2.png'), auto;
+  }
+  
+  .gameButton.active {
+    background-color: #ff0000; /* Change the color to indicate active state */
+    color: white; /* Optional: Change text color if needed */
+    cursor: url('../assets/images/cursor2.png'), auto;
+  }
