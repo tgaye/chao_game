@@ -170,6 +170,25 @@ var layingDown = this.sprite.animations.add(
   false
 );
 
+var layingDownAnimation = this.sprite.animations.getAnimation('layingDown');
+layingDownAnimation.onComplete.add(() => {
+    // Assume some time is needed before considering the action as completed,
+    // such as waiting for the Chao to stop moving after being kicked.
+    context.time.events.add(Phaser.Timer.SECOND * 4, () => {
+        this.isBeingPushed = false;
+        this.sprite.animations.play('cryingPose'); // This might already exist or be your desired follow-up action
+
+        // Reset kick active state, cursor, and remove the 'active' class from the button
+        window.kickActive = false;
+        document.body.style.cursor = "url('assets/images/cursor2.png'), auto";
+        var kickButton = document.getElementById('btnTwo'); // Adjust ID as necessary
+        kickButton.classList.remove('active'); // Remove 'active' class
+        
+        console.log("Kicking action completed, kick active reset.");
+    });
+}, this);
+
+
 var cryingPose = this.sprite.animations.add(
   'cryingPose', 
   Phaser.Animation.generateFrameNames('chao_', 14, 15, '', 3),
@@ -234,9 +253,36 @@ this.sprite.animations.add(
 var petAnimation = this.sprite.animations.getAnimation('pet');
 petAnimation.onComplete.add(() => {
   this.sprite.animations.play('happy'); // Replace 'happy' with your default idle animation
+  window.petActive = false;
+  document.body.style.cursor = "url('assets/images/cursor2.png'), auto";
+  var petButton = document.getElementById('btnOne'); // Adjust ID as necessary
+  petButton.classList.remove('active'); // Remove 'active' class
+  console.log("Petting action completed, pet active reset.");
+  
 }, this);
 
 // this.sprite.animations.play(this.mood);
+var repeatAnimation = function(animationName, times) {
+  var count = 0; // Initialize count
+
+  // Define a function to play the animation and increment the count
+  var playAnimation = function() {
+    if (count < times) {
+      self.sprite.animations.play(animationName).onComplete.addOnce(function() {
+        count++;
+        playAnimation(); // Play the animation again
+      });
+    } else {
+      self.sprite.animations.stop(); 
+      // Optionally, do something after the last repetition
+      console.log(animationName + " animation repeated " + times + " times.");
+    }
+  };
+
+  // Start the first animation play
+  playAnimation();
+};
+
 
 // prototypal
 this.update = function(){
@@ -250,7 +296,7 @@ this.update = function(){
   // Stop moving if an item is consumed
   if (self.desire.target && !self.desire.target.sprite.visible) {
     self.sprite.animations.stop();
-    self.sprite.animations.play('happy');
+    repeatAnimation('happy', 2);   
     self.desire.target = null; // Clear the target
     return;
   }
@@ -627,6 +673,9 @@ var feedMenu = document.getElementById("feedMenu");
 
 toggleImage.onclick = function() {
     feedMenu.style.display = "none";
+    document.body.style.cursor = "url('assets/images/cursor2.png'), auto";
+    var feedButton = document.getElementById('btnThree'); // Adjust ID as necessary
+    feedButton.classList.remove('active'); // Remove 'active' class
     window.petActive = false;
     window.kickActive = false;
     window.feedActive = false;
@@ -688,3 +737,4 @@ window.addEventListener('load', function() {
 });
 
 window.addEventListener('resize', positionGameMenu);
+
