@@ -1,0 +1,35 @@
+{
+    "version": 2,
+    "headers": [
+      {
+        "source": "/(.*)",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          },
+          {
+            "key": "Content-Security-Policy",
+            "value": "default-src 'self'; img-src 'self' https://raw.githubusercontent.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+          },
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "X-Frame-Options",
+            "value": "SAMEORIGIN"
+          }
+        ]
+      }
+    ],
+    "routes": [
+      {
+        "src": "/index.html",
+        "headers": {
+          "Cache-Control": "max-age=0, must-revalidate"
+        }
+      }
+    ]
+  }
+  
