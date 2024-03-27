@@ -15,7 +15,8 @@ async function connectWalletHandler() {
           
           // Hide the connect wallet container
           document.getElementById('connectWalletContainer').style.display = 'none';
-          
+          document.getElementById('textContainer').style.display = 'none';
+
           // Show the game content
           document.getElementById('gameContent').style.display = 'block';
       } catch (error) {
