@@ -1,20 +1,39 @@
-body {
-    padding: 0;
-    margin: 0;
-    background-color: black;
-    cursor: url('../assets/images/cursor2.png'), auto;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  cursor: url('../assets/images/cursor2.png'), auto;
+  overflow: hidden; /* Prevent scrolling */
 }
 
+
 #gameMenu {
-    position: fixed; /* Use fixed if the canvas position is fixed or known */
-    bottom: 0; /* Start from the bottom */
-    right: 100; /* Start from the right */
+    position: absolute;
+    bottom: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
     gap: 2vh;
     z-index: 10; /* Ensure it's above the game canvas */
     cursor: url('../assets/images/cursor2.png'), auto;
 
+}
+
+#gameContent {
+ position: absolute; /* Position the element absolutely within its positioned ancestor, or the viewport if no such ancestor exists */
+  top: 50%; /* Position the top edge of the element in the middle of the parent/viewport */
+  left: 50%; /* Position the left edge of the element in the middle of the parent/viewport */
+  transform: translate(-50%, -50%); /* Shift the element back by half its own width and height to center it */  
+  max-width: 100vh; /* Maximum width */
+  max-height: 100vh; /* Maximum height */
+  width: 100vh;
+  height: 100vh;
+  margin: auto; /* Center the game */
+  display: flex;
+  justify-content: center; /* Center children horizontally */
+  align-items: center; /* Center children vertically */
+  overflow: hidden; /* Hide overflow */
 }
 
 #feedMenu {
@@ -50,6 +69,7 @@ body {
     font-size: 1em; /* Adjust size as needed */
     width: 26vh;
     cursor: url('../assets/images/cursor2.png'), auto;
+
   }
   
   .gameButton.active {

@@ -1,28 +1,56 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>❤❤❤</title>
-
-    <script src="js/lib/phaser.min.js"></script>
-        <script src="js/util.js"></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/wambosa/hey_come_back/master/HeyComeBack.js"></script>
     <link rel="stylesheet" href="css/site.css">
+    <script src="js/lib/phaser.min.js"></script>
+    <script src="js/util.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/wambosa/hey_come_back/master/HeyComeBack.js"></script>
 </head>
-
 <body>
-    <div id="gameMenu">
-        <button class="gameButton" id="btnOne">Pet</button>
-        <button class="gameButton" id="btnTwo">Kick</button>
-        <button class="gameButton" id="btnThree">Feed</button>
-      </div>
 
-      <div id="feedMenu">
-        <img id="toggleImage" src="assets/images/x_menu.png" style="position: absolute; top: 60px; left: 60px; width: 80px; height: 80px; cursor: pointer;">
-        <span style="margin-left: 30vh; font-size: 8vh; font-weight: 900; text-decoration: underline; ">Food:</span>      
+
+<div id="wrapper" style="
+    border: 5px solid white;
+    width: 100vh;
+    height: 98vh;
+    transform: translate(0%,1%);
+    border-radius: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto; /* Center the wrapper horizontally */
+    position: relative; /* Needed if you're going to absolutely position children */
+    overflow: hidden; /* Hide overflow */
+    box-sizing: border-box; /* Include padding and borders in the element's total width and height */
+">
+    <div id="connectWalletContainer" style="text-align: center;">
+        <button id="connectWalletButton" style="padding: 10px 20px; font-size: 20px; cursor: pointer;">Connect Wallet</button>
     </div>
-      
+
+    <div id="textContainer" style="text-align: center;">
+        <br></br>
+        <span style="color: white; text-align: center; font-size: 3vh; ">Connect Wallet With BASED PET.</span>
+    </div>
+</div>
+
+
+    <!-- The game content is initially hidden -->
+    <div id="gameContent" style="display: none; max-width: 100vh; max-height: 100vh;">
+        <div id="gameMenu">
+            <button class="gameButton" id="btnOne">Pet</button>
+            <button class="gameButton" id="btnTwo">Kick</button>
+            <button class="gameButton" id="btnThree">Feed</button>
+        </div>
+
+        <div id="feedMenu">
+            <img id="toggleImage" src="assets/images/x_menu.png" style="position: absolute; top: 60px; left: 60px; width: 80px; height: 80px; cursor: pointer;">
+            <span style="margin-left: 30vh; font-size: 8vh; font-weight: 900; text-decoration: underline;">Food:</span>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
 </body>
 </html>

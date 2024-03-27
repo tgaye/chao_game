@@ -6,6 +6,31 @@ window.addEventListener('load', function(){
   });
 });
 
+// Assuming Ethereum wallets such as MetaMask
+async function connectWalletHandler() {
+  if (window.ethereum) { // Check if MetaMask is installed
+      try {
+          // Request account access
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+          
+          // Hide the connect wallet container
+          document.getElementById('connectWalletContainer').style.display = 'none';
+          
+          // Show the game content
+          document.getElementById('gameContent').style.display = 'block';
+      } catch (error) {
+          console.error('User denied account access');
+      }
+  } else {
+      console.log('MetaMask is not installed');
+  }
+}
+
+// Attach the connectWalletHandler function to the button
+document.getElementById('connectWalletButton').addEventListener('click', connectWalletHandler);
+
+
+
 cheat = null;
 
 // todo: prototype the Chao and Items for perf later on
@@ -649,10 +674,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-var game = new Phaser.Game(176, 160, Phaser.AUTO);
+var game = new Phaser.Game(176, 160, Phaser.AUTO, 'gameContent');
 
 game.state.add('GameState', GameState);
 game.state.start('GameState');
+
 
 function positionGameMenu() {
   var gameCanvas = document.querySelector("canvas");
